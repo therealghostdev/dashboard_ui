@@ -1,0 +1,86 @@
+export const customerData = [
+  {
+    id: 1,
+    name: "Ana Black",
+    email: "ana@gmail.com",
+    image: "/src/assets/Ellipse 3.svg",
+    location: {
+      lat: 37.7749,
+      lng: -122.4194,
+      name: "San Francisco",
+      address: "123 Market St, San Francisco, CA",
+    },
+  },
+  {
+    id: 2,
+    name: "George Litz",
+    email: "georgelitz@gmail.com",
+    image: "/src/assets/Ellipse 4.svg",
+    location: {
+      lat: 37.8844,
+      lng: -122.4847,
+      name: "Paradise Cay",
+      address: "456 Paradise Dr, Tiburon, CA",
+    },
+  },
+  {
+    id: 3,
+    name: "John Miller",
+    email: "Johnmiller@gmail.com",
+    image: "/src/assets/Ellipse 5.svg",
+    location: {
+      lat: 37.7858,
+      lng: -122.4064,
+      name: "San Francisco",
+      address: "789 Pine St, San Francisco, CA",
+    },
+  },
+  {
+    id: 4,
+    name: "Jane Johnson",
+    email: "jj@gmail.com",
+    image: "/src/assets/Ellipse 6 (1).svg",
+    location: {
+      lat: 37.7868,
+      lng: -122.4074,
+      name: "San Francisco",
+      address: "789 Pine St, San Francisco, CA",
+    },
+  },
+  {
+    id: 5,
+    name: "Mezei Ágnes",
+    email: "fefekartika@gmail.com",
+    image: "/src/assets/Ellipse 6 (2).svg",
+    location: {
+      lat: 37.7848,
+      lng: -122.4054,
+      name: "San Francisco",
+      address: "789 Pine St, San Francisco, CA",
+    },
+  },
+  {
+    id: 6,
+    name: "Katona Beatrix",
+    email: "edobram@gmail.com",
+    image: "/src/assets/Ellipse 6 (3).svg",
+    location: {
+      lat: 37.7838,
+      lng: -122.4044,
+      name: "San Francisco",
+      address: "789 Pine St, San Francisco, CA",
+    },
+  },
+  {
+    id: 7,
+    name: "Halász Emese",
+    email: "jiloputri@yahoo.com",
+    image: "/src/assets/Ellipse 6 (3).svg",
+    location: {
+      lat: 37.7828,
+      lng: -122.4034,
+      name: "San Francisco",
+      address: "789 Pine St, San Francisco, CA",
+    },
+  },
+];
