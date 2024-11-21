@@ -24,6 +24,8 @@ import { customerData } from "../reusables/variables";
 import view_icon from "../../assets/carbon_view-filled.svg";
 import download_icon from "../../assets/bx_bx-export.svg";
 import delete_icon from "../../assets/feather_trash-2.svg";
+import FoodMenu from "./foodMenu";
+import { FoodData } from "../reusables/variables";
 
 ChartJS.register(
   CategoryScale,
@@ -268,7 +270,7 @@ export default function Main() {
         <View_total icon={order_icon} label="Total Orders" value={3500} />
       </div>
 
-      <div className="w-full flex items-center my-12">
+      <div className="w-full flex items-center my-4">
         <div className="flex flex-col bg-[#ffffff] w-2/4 mx-2 px-4 rounded-lg h-[500px]">
           <div className="w-full relative border-b border-[#E6E8F0] py-6 flex justify-between items-center">
             <h1 className="text-[#081735] text-xl font-bold">Revenue</h1>
@@ -440,7 +442,7 @@ export default function Main() {
         </div>
       </div>
 
-      <div className="w-full flex gap-x-4 gap-y-4 items-center px-8 py-4">
+      <div className="w-full flex gap-x-4 gap-y-4 items-center py-4 my-4">
         <div className="w-[70%] h-[500px] flex flex-col py-4 px-4 bg-[#ffffff] items-center rounded-lg">
           <div className="border-b border-b-[#E6E8F0] w-full my-4 flex items-center py-2 pb-4">
             <h1 className="text-2xl font-bold text-[#081735]">Customer Map</h1>
@@ -464,6 +466,10 @@ export default function Main() {
             />
           </div>
         </div>
+      </div>
+
+      <div className="w-full flex-col rounded-lg bg-[#ffffff]">
+        <FoodMenu data={FoodData} />
       </div>
     </section>
   );

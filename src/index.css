@@ -25,3 +25,32 @@ body {
 .leaflet-marker-shadow {
   display: block !important;
 }
+
+.link {
+  text-align: center;
+  position: relative;
+}
+
+.link::after {
+  position: absolute;
+  bottom: -40%;
+  left: 0;
+  content: "";
+  display: block;
+  width: 0;
+  background: #6c5dd3;
+  height: 2px;
+  opacity: 0;
+  /* transition: opacity 0.8s, width 0.8s, left 0.8s; */
+}
+
+.link:hover::after {
+  opacity: 1;
+  width: 100%;
+}
+
+.link:not(:hover)::after {
+  left: auto;
+  right: 0;
+  width: 0;
+}
