@@ -2,7 +2,7 @@ import propTypes from "prop-types";
 
 export default function View_total({ icon, label, value, currency }) {
   return (
-    <div className="w-1/4 flex flex-col justify-center items-center py-3 px-4 gap-y-2 border-transparent rounded-lg shadow-shadow1 mx-4 bg-[#F8F9FB]">
+    <div className="lg:w-1/4 md:w-[42%] max-md:w-[40%] max-sm:w-[39.5%] flex flex-col justify-center items-center py-3 px-4 gap-y-2 border-transparent rounded-lg shadow-shadow1 mx-4 bg-[#F8F9FB]">
       <div className="w-full flex flex-col">
         <span className="w-10 h-10">
           <img src={icon} alt="menu-icon" />

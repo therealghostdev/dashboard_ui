@@ -10,8 +10,8 @@ const FoodItem = ({ image, name, price, servings }) => {
         className="w-full h-full object-center object-cover"
       />
       <div className="absolute inset-0 flex items-center justify-center w-full px-4 bg-transparent">
-        <div className="bg-white absolute bottom-8 bg-opacity-80 backdrop-blur-sm p-4 rounded-lg text-center w-[95%]">
-          <div className="w-full flex justify-between items-center text-nowrap gap-x-2 font-semibold">
+        <div className="bg-white absolute bottom-8 max-md:left-1 bg-opacity-80 backdrop-blur-sm p-4 rounded-lg md:text-center w-[95%]">
+          <div className="w-full flex md:justify-between md:items-center  justify-start text-nowrap max-md:flex-col gap-x-2 font-semibold">
             <h3 className="text-md text-[#1E293B]">{name}</h3>
             <p className="text-gray-700 font-medium">Price: ${price}</p>
           </div>

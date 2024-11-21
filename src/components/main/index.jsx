@@ -257,8 +257,8 @@ export default function Main() {
   };
 
   return (
-    <section className="w-full flex flex-col px-4 py-4 gap-x-6">
-      <div className="w-full flex justify-center items-center gap-x-6 my-4">
+    <section className="w-full flex flex-col px-4 py-4 gap-x-6 overflow-x-auto">
+      <div className="w-full flex justify-center items-center lg:flex-row lg:flex-nowrap lg:gap-x-6 my-4 md:gap-y-4 max-md:gap-y-4 md:flex-wrap max-md:flex-wrap">
         <View_total icon={menu_icon} label="Total Menu" value={345} />
         <View_total
           icon={revenue_icon}
@@ -270,8 +270,8 @@ export default function Main() {
         <View_total icon={order_icon} label="Total Orders" value={3500} />
       </div>
 
-      <div className="w-full flex items-center my-4">
-        <div className="flex flex-col bg-[#ffffff] w-2/4 mx-2 px-4 rounded-lg h-[500px]">
+      <div className="w-full flex items-center my-4 md:flex-col md:gap-4 lg:flex-row max-md:gap-y-4 max-md:flex-col">
+        <div className="flex flex-col bg-[#ffffff] lg:w-2/4 w-full mx-2 px-4 rounded-lg h-[500px]">
           <div className="w-full relative border-b border-[#E6E8F0] py-6 flex justify-between items-center">
             <h1 className="text-[#081735] text-xl font-bold">Revenue</h1>
 
@@ -315,7 +315,10 @@ export default function Main() {
                 &#x24;{totalRevenue.toLocaleString()}
               </h1>
             </div>
-            <Bar ref={chartRef} data={data1} options={options1} />
+
+            <div className="lg:h-auto md:h-3/4 lg:w-full md:w-full">
+              <Bar ref={chartRef} data={data1} options={options1} />
+            </div>
           </div>
 
           <div className="flex w-3/4 text-[#8F95B2] mb-8 mt-6">
@@ -353,7 +356,7 @@ export default function Main() {
           </div>
         </div>
 
-        <div className="flex flex-col justify-between bg-[#ffffff] w-2/4 mx-2 rounded-lg h-[500px]">
+        <div className="flex flex-col justify-between bg-[#ffffff] lg:w-2/4 w-full mx-2 rounded-lg md:h-[500px] h-auto">
           <div className="w-full border-b border-[#E6E8F0] py-4 px-4 flex justify-between items-center">
             <div className="flex flex-col">
               <h1 className="text-[#081735] text-xl font-bold">Customers</h1>
@@ -371,7 +374,7 @@ export default function Main() {
           </div>
 
           <div className="w-full flex flex-col justify-between gap-y-4 p-6 mb-8">
-            <div className="flex  w-full">
+            <div className="flex md:flex-row flex-col  w-full">
               <div className="relative w-72 rounded-full mx-6 my-6 shadow-shadow2">
                 {/* Ring background */}
                 <div className="absolute inset-0 flex items-center justify-center w-full h-full bg-[#fff]">
@@ -402,7 +405,7 @@ export default function Main() {
                 </div>
               </div>
 
-              <div className="ml-2 flex flex-col justify-center gap-y-6 ">
+              <div className="ml-2 flex md:flex-col flex-row justify-center gap-y-6 ">
                 <CircularProgress
                   percentage={dailyPercentage}
                   colors={["#4C73FF", "#FFB7F5"]}
@@ -442,8 +445,8 @@ export default function Main() {
         </div>
       </div>
 
-      <div className="w-full flex gap-x-4 gap-y-4 items-center py-4 my-4">
-        <div className="w-[70%] h-[500px] flex flex-col py-4 px-4 bg-[#ffffff] items-center rounded-lg">
+      <div className="w-full flex lg:flex-row md:flex-col max-md:flex-col-reverse gap-x-4 gap-y-4 items-center py-4 my-4">
+        <div className="lg:w-[70%] w-full h-[500px] flex flex-col py-4 px-4 bg-[#ffffff] items-center rounded-lg">
           <div className="border-b border-b-[#E6E8F0] w-full my-4 flex items-center py-2 pb-4">
             <h1 className="text-2xl font-bold text-[#081735]">Customer Map</h1>
           </div>
@@ -454,7 +457,7 @@ export default function Main() {
             />
           </div>
         </div>
-        <div className="w-[30%] py-4 px-4 h-[500px] overflow-x-hidden overflow-y-auto bg-[#ffffff] flex flex-col rounded-lg">
+        <div className="lg:w-[30%] w-full py-4 px-4 h-[500px] overflow-x-hidden overflow-y-auto bg-[#ffffff] flex flex-col rounded-lg">
           <div className="w-full my-2 flex items-center py-2">
             <h1 className="text-xl font-bold text-[#081735]">Customer List</h1>
           </div>

@@ -14,7 +14,7 @@ const CircularProgress = ({ percentage, colors, label, border }) => {
   const radius = (size - strokeWidth) / 2;
   const circumference = radius * 2 * Math.PI;
   return (
-    <div className="flex items-center w-full gap-x-2 flex-wrap">
+    <div className="flex md:flex-row flex-col items-center w-full gap-x-2 flex-wrap">
       <div className="relative w-12 h-12">
         <div
           className="absolute inset-0 rounded-full"
@@ -70,7 +70,7 @@ const CircularProgress = ({ percentage, colors, label, border }) => {
       </div>
 
       <div className="flex flex-col">
-        <div className="flex items-center">
+        <div className="flex items-center md:justify-start justify-center">
           <span className="text-lg font-semibold" style={{ color: colors[0] }}>
             +{percentage}%
           </span>

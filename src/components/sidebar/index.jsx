@@ -6,63 +6,71 @@ import user_icon from "../../assets/3-User.svg";
 import document_icon from "../../assets/Document.svg";
 import { Link } from "react-router-dom";
 import SubscriptionProgress from "../reusables/progress_circle";
+import propTypes from "prop-types";
 
-export default function Sidebar() {
+export default function Sidebar({ isMobile, onNavItemClick }) {
   return (
-    <nav className="w-[18%] absolute top-0 left-0 min-h-[150vh] bg-[#ffffff] py-6 px-4 overflow-y-auto">
-      <div className="w-full h-full flex flex-col justify-between px-4 gap-y-12">
-        <div className="w-full my-5 px-4 overflow-hidden">
+    <nav
+      className={`
+      w-full 
+      fixed 
+      md:static 
+      top-0 
+      left-0 
+      md:min-h-screen
+      md:h-auto
+      h-screen  
+      bg-[#ffffff] 
+      py-6 
+      lg:px-4 
+      ${isMobile ? "z-20 overflow-y-scroll" : "z-0"}
+    `}
+    >
+      <div className="w-full flex flex-col h-full">
+        <div className="w-full my-5 px-4 overflow-hidden flex-shrink-0">
           <img src={dashboard_icon} alt="dashboard-image" />
         </div>
 
-        <div className="w-full flex flex-col justify-center gap-y-8 text-[#8F95B2] font-bold my-8 mb-48">
-          <div className="w-full flex gap-x-2 px-4 py-2 hover:bg-[#6C5DD3] rounded-md bg-[#6C5DD3]">
-            <span className="w-6 h-6">
-              <img src={icon1} alt="dashboard" className="w-full h-full" />
-            </span>
-            <Link to="#" className="">
-              Dashboard
-            </Link>
+        {isMobile && (
+          <div className="w-1/4 h-10 flex absolute right-5 top-0 justify-center items-center z-30">
+            <button
+              className="w-full h-full text-4xl bg-[#F8F9FB] rounded-lg flex justify-center items-center"
+              aria-label="toggle sidebar"
+              onClick={onNavItemClick}
+            >
+              &#10006;
+            </button>
           </div>
+        )}
 
-          <div className="w-full flex gap-x-2 px-4 py-2 hover:bg-[#6C5DD3] rounded-md">
-            <span className="w-6 h-6">
-              <img src={bag_icon} alt="dashboard" className="w-full h-full" />
-            </span>
-            <Link to="#" className="">
-              Orders
-            </Link>
-          </div>
-
-          <div className="w-full flex gap-x-2 px-4 py-2 hover:bg-[#6C5DD3] rounded-md">
-            <span className="w-6 h-6">
-              <img src={chart_icon} alt="analytics" className="w-full h-full" />
-            </span>
-            <Link to="#" className="">
-              Analytics
-            </Link>
-          </div>
-
-          <div className="w-full flex gap-x-2 px-4 py-2 hover:bg-[#6C5DD3] rounded-md">
-            <span className="w-6 h-6">
-              <img src={user_icon} alt="customer" className="w-full h-full" />
-            </span>
-            <Link to="#" className="">
-              Customer
-            </Link>
-          </div>
-
-          <div className="w-full flex gap-x-2 px-4 py-2 hover:bg-[#6C5DD3] rounded-md">
-            <span className="w-6 h-6">
-              <img src={document_icon} alt="menu" className="w-full h-full" />
-            </span>
-            <Link to="#" className="">
-              menu
-            </Link>
-          </div>
+        <div className="w-full flex flex-col justify-center gap-y-8 text-[#8F95B2] font-bold my-8 mb-48 flex-grow">
+          {[
+            { icon: icon1, text: "Dashboard", link: "#" },
+            { icon: bag_icon, text: "Orders", link: "#" },
+            { icon: chart_icon, text: "Analytics", link: "#" },
+            { icon: user_icon, text: "Customer", link: "#" },
+            { icon: document_icon, text: "Menu", link: "#" },
+          ].map((item, index) => (
+            <div
+              key={index}
+              className="w-full flex gap-x-2 px-4 py-2 hover:bg-[#6C5DD3] rounded-md"
+              onClick={onNavItemClick}
+            >
+              <span className="w-6 h-6">
+                <img
+                  src={item.icon}
+                  alt={item.text}
+                  className="w-full h-full"
+                />
+              </span>
+              <Link to={item.link} className="">
+                {item.text}
+              </Link>
+            </div>
+          ))}
         </div>
 
-        <div className="w-full flex flex-col bg-[#F8F9FB] rounded-md gap-y-6 py-6 px-4 relative mt-8">
+        <div className="w-full flex flex-col bg-[#F8F9FB] rounded-md gap-y-6 py-6 px-4 relative mt-8 flex-shrink-0">
           <div className="flex flex-col justify-start gap-y-4">
             <SubscriptionProgress />
 
@@ -86,3 +94,8 @@ export default function Sidebar() {
     </nav>
   );
 }
+
+Sidebar.propTypes = {
+  isMobile: propTypes.bool.isRequired,
+  onNavItemClick: propTypes.func.isRequired,
+};

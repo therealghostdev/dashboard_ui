@@ -12,7 +12,6 @@ import food3 from "../../assets/food3.svg";
 import food4 from "../../assets/food4.svg";
 import food5 from "../../assets/food5.svg";
 import food6 from "../../assets/food6.svg";
-import food7 from "../../assets/food7.svg";
 
 export const customerData = [
   {
