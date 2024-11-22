@@ -58,3 +58,10 @@ body {
   right: 0;
   width: 0;
 }
+
+/* @media screen and (max-width: 345px) {
+  .search {
+    margin-left: -2% !important;
+    margin-top: -18%;
+  }
+} */

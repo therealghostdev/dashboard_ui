@@ -1,6 +1,6 @@
 import React from "react";
 import FoodItem from "../reusables/foodItem";
-import propTypes from "prop-types";
+import PropTypes from "prop-types";
 
 const FoodMenu = ({ data }) => {
   const [activeCategory, setActiveCategory] = React.useState("All Category");
@@ -10,8 +10,14 @@ const FoodMenu = ({ data }) => {
       ? data
       : data.filter((item) => item.category === activeCategory);
 
-  const first_two = filteredItems.slice(0, 2);
-  const rest_of_item = filteredItems.slice(3);
+  const first_two = React.useMemo(
+    () => filteredItems.slice(0, 2),
+    [filteredItems]
+  );
+  const rest_of_item = React.useMemo(
+    () => filteredItems.slice(3),
+    [filteredItems]
+  );
 
   return (
     <div className="w-full flex flex-col px-4 py-4 overflow-y-auto">
@@ -76,8 +82,19 @@ const FoodMenu = ({ data }) => {
   );
 };
 
-export default FoodMenu;
-
 FoodMenu.propTypes = {
-  data: propTypes.array.isRequired,
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      image: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
+        .isRequired,
+      name: PropTypes.string.isRequired,
+      price: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+        .isRequired,
+      servings: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+        .isRequired,
+      category: PropTypes.oneOf(["Breakfast", "Lunch", "Dinner"]).isRequired,
+    })
+  ).isRequired,
 };
+
+export default FoodMenu;

@@ -7,6 +7,11 @@ import document_icon from "../../assets/Document.svg";
 import { Link, useLocation } from "react-router-dom";
 import SubscriptionProgress from "../reusables/progress_circle";
 import propTypes from "prop-types";
+import profile from "../../assets/Avatar.svg";
+import mail_icon from "../../assets/mail.svg";
+import skeleton_icon from "../../assets/Skeleton.svg";
+import search_icon from "../../assets/Search.svg";
+import bell_icon from "../../assets/bell.svg";
 
 export default function Sidebar({ isMobile, onNavItemClick }) {
   const navigate = useLocation();
@@ -28,15 +33,71 @@ export default function Sidebar({ isMobile, onNavItemClick }) {
       ${isMobile ? "z-20 overflow-y-scroll" : "z-0"}
     `}
     >
-      <div className="w-full flex flex-col h-full">
+      <div className="w-full flex flex-col h-full md:px-2 max-sm:px-6">
         <div className="w-full my-5 px-4 overflow-hidden flex-shrink-0">
           <img src={dashboard_icon} alt="dashboard-image" />
         </div>
 
+        <div className="w-full md:hidden py-8 my-12 space-y-6">
+          <div className="w-full flex justify-between items-center">
+            <div className="flex items-center gap-x-4">
+              <span className="w-10 h-10 rounded-full">
+                <img
+                  src={profile}
+                  alt="profile"
+                  className="w-full h-full object-cover"
+                />
+              </span>
+              <span className="text-[#111827] font-bold text-xl">
+                Tynisha Obey
+              </span>
+            </div>
+
+            <div className="flex items-center gap-x-6">
+              <div className="w-5 h-5 relative">
+                <img src={mail_icon} alt="mail" className="w-full h-full" />
+                <span className="absolute -top-1 -right-1 w-2.5 h-2.5">
+                  <img
+                    src={skeleton_icon}
+                    alt="notification"
+                    className="w-full h-full"
+                  />
+                </span>
+              </div>
+
+              <div className="w-5 h-5 relative">
+                <img
+                  src={bell_icon}
+                  alt="notifications"
+                  className="w-full h-full"
+                />
+                <span className="absolute -top-1 -right-1 w-2.5 h-2.5">
+                  <img
+                    src={skeleton_icon}
+                    alt="notification"
+                    className="w-full h-full"
+                  />
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div className="relative w-full">
+            <input
+              type="text"
+              placeholder="Search..."
+              className="w-full rounded-xl border border-[#D9D9D9] outline-none py-2 px-4 pl-10"
+            />
+            <span className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5">
+              <img src={search_icon} alt="search" className="w-full h-full" />
+            </span>
+          </div>
+        </div>
+
         {isMobile && (
-          <div className="w-1/4 h-10 flex absolute right-5 top-0 justify-center items-center z-30">
+          <div className="w-1/4 h-10 flex absolute right-5 top-5 justify-center items-center z-30">
             <button
-              className="w-full h-full text-4xl bg-[#F8F9FB] rounded-lg flex justify-center items-center"
+              className="w-full h-full text-4xl bg-transparent text-red-500 rounded-lg flex justify-center items-center"
               aria-label="toggle sidebar"
               onClick={onNavItemClick}
             >
@@ -56,12 +117,17 @@ export default function Sidebar({ isMobile, onNavItemClick }) {
             const isActive = navigate.pathname === item.link;
 
             return (
-              <div
+              <button
                 key={index}
-                className={`w-full flex gap-x-2 px-4 py-2 hover:bg-[#6C5DD3] rounded-md ${
+                className={`w-full flex gap-x-2 px-4 py-4 hover:bg-[#6C5DD3] border-none outline-none rounded-md ${
                   isActive ? "bg-[#6C5DD3] text-[#FFFFFF]" : ""
                 }`}
-                onClick={onNavItemClick}
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (isMobile) {
+                    onNavItemClick();
+                  }
+                }}
               >
                 <span className="w-6 h-6">
                   <img
@@ -73,7 +139,7 @@ export default function Sidebar({ isMobile, onNavItemClick }) {
                 <Link to={item.link} className="">
                   {item.text}
                 </Link>
-              </div>
+              </button>
             );
           })}
         </div>

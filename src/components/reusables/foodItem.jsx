@@ -1,5 +1,4 @@
 import PropTypes from "prop-types";
-import propTypes from "prop-types";
 
 const FoodItem = ({ image, name, price, servings }) => {
   return (
@@ -27,8 +26,9 @@ const FoodItem = ({ image, name, price, servings }) => {
 export default FoodItem;
 
 FoodItem.propTypes = {
-  image: propTypes.string.isRequired,
-  name: propTypes.string.isRequired,
-  price: PropTypes.string.isRequired,
-  servings: propTypes.string.isRequired,
+  image: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
+  name: PropTypes.string.isRequired,
+  price: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  servings: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+    .isRequired,
 };

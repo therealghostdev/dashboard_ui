@@ -29,7 +29,7 @@ export default function Navigation({ navClick, windowWidth }) {
           <input
             type="text"
             placeholder="search..."
-            className="rounded-xl border border-[#D9D9D9] outline-none py-2 lg:px-10 px-8 lg:-ml-[10%] md:-ml-[14%]"
+            className="rounded-xl border border-[#D9D9D9] outline-none py-2 lg:px-10 px-8 lg:-ml-[9%] md:-ml-[14%]"
           />
 
           <div className="flex gap-x-6 items-center">
@@ -71,7 +71,7 @@ export default function Navigation({ navClick, windowWidth }) {
       {windowWidth < 768 && (
         <div className="w-1/4 h-10 flex justify-center items-center">
           <button
-            className="w-full h-full text-5xl bg-[#F8F9FB] rounded-lg flex justify-center items-center"
+            className="w-full h-full text-5xl bg-transparent text-[#b0b2b4] rounded-lg flex justify-center items-center"
             aria-label="toggle sidebar"
             onClick={navClick}
           >

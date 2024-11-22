@@ -26,6 +26,7 @@ import download_icon from "../../assets/bx_bx-export.svg";
 import delete_icon from "../../assets/feather_trash-2.svg";
 import FoodMenu from "./foodMenu";
 import { FoodData } from "../reusables/variables";
+import AnimatedCounter from "../reusables/animated_counter";
 
 ChartJS.register(
   CategoryScale,
@@ -52,14 +53,17 @@ export default function Main() {
 
   useEffect(() => {
     const handleClickOutside = (e) => {
-      if (revenue_pop_ref && !revenue_pop_ref.current.contains(e.target)) {
+      if (
+        revenue_pop_ref.current &&
+        !revenue_pop_ref.current.contains(e.target)
+      ) {
         setView_revenue_pop(false);
       }
     };
 
-    document.addEventListener("mousedown", handleClickOutside);
+    document?.addEventListener("mousedown", handleClickOutside);
 
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    return () => document?.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   React.useEffect(() => {
@@ -238,8 +242,8 @@ export default function Main() {
       },
     },
     scales: {
-      display: false,
       x: {
+        display: false,
         grid: {
           display: false,
           drawBorder: false,
@@ -311,11 +315,14 @@ export default function Main() {
 
           <div className="w-full h-3/4 flex flex-col py-2 px-4 items-baseline justify-end my-auto">
             <div className="">
-              <h1 className="text-4xl font-bold mb-6">
-                &#x24;{totalRevenue.toLocaleString()}
+              <h1 className="text-4xl font-bold mb-6 flex items-baseline">
+                <AnimatedCounter
+                  value={totalRevenue}
+                  formatValue={(value) => `$${value.toLocaleString()}`}
+                  duration={5}
+                />
               </h1>
             </div>
-
             <div className="lg:h-auto md:h-3/4 lg:w-full md:w-full">
               <Bar ref={chartRef} data={data1} options={options1} />
             </div>
@@ -421,7 +428,7 @@ export default function Main() {
               </div>
             </div>
 
-            <div className="w-full flex gap-x-2 justify-center items-center mt-8 font-bold">
+            <div className="w-full flex gap-x-2 justify-center items-center md:mt-0 max-sm:mt-8 font-bold">
               <div className="w-1/3 flex justify-center items-center gap-x-1">
                 <span
                   className="w-3 h-3 rounded-md"

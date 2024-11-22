@@ -1,4 +1,3 @@
-// CustomerList.jsx
 import propTypes from "prop-types";
 
 const CustomerList = ({ customers, onCustomerSelect, selectedCustomer }) => {
@@ -20,7 +19,9 @@ const CustomerList = ({ customers, onCustomerSelect, selectedCustomer }) => {
             className="w-10 h-10 rounded-full mr-3"
           />
           <div role="button">
-            <h3 className="font-bold text-md text-[#1E293B]">{customer.name}</h3>
+            <h3 className="font-bold text-md text-[#1E293B]">
+              {customer.name}
+            </h3>
             <p className="text-sm text-[#64748B]">{customer.email}</p>
           </div>
         </div>
@@ -34,5 +35,5 @@ export default CustomerList;
 CustomerList.propTypes = {
   customers: propTypes.array.isRequired,
   onCustomerSelect: propTypes.func.isRequired,
-  selectedCustomer: propTypes.array.isRequired,
+  selectedCustomer: propTypes.array,
 };
