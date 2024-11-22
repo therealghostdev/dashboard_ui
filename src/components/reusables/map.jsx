@@ -22,9 +22,13 @@ const MapController = ({ selectedCustomer, customers }) => {
 
   useEffect(() => {
     if (selectedCustomer) {
-      map.setView(
+      map.flyTo(
         [selectedCustomer.location.lat, selectedCustomer.location.lng],
-        16
+        16,
+        {
+          duration: 2,
+          easeLinearity: 0.25,
+        }
       );
     } else if (customers.length > 0) {
       const locationCounts = customers.reduce((acc, customer) => {
@@ -45,12 +49,18 @@ const MapController = ({ selectedCustomer, customers }) => {
       );
 
       if (mostPopulatedLocation) {
-        map.setView([mostPopulatedLocation.lat, mostPopulatedLocation.lng], 13);
+        map.flyTo([mostPopulatedLocation.lat, mostPopulatedLocation.lng], 13, {
+          duration: 2,
+          easeLinearity: 0.25,
+        });
       } else {
         const bounds = L.latLngBounds(
           customers.map((c) => [c.location.lat, c.location.lng])
         );
-        map.fitBounds(bounds);
+        map.flyToBounds(bounds, {
+          duration: 1.5,
+          easeLinearity: 0.25,
+        });
       }
     }
   }, [selectedCustomer, customers, map]);
@@ -77,7 +87,7 @@ const CustomerMap = ({ customers, selectedCustomer }) => {
     <MapContainer
       style={{ height: "100%", width: "100%" }}
       center={[37.7749, -122.4194]}
-      zoom={18}
+      zoom={20}
       scrollWheelZoom={true}
       zoomControl={false}
     >

@@ -1,27 +1,55 @@
-import propTypes from "prop-types";
+import React from "react";
+import PropTypes from "prop-types";
 
-export default function View_total({ icon, label, value, currency }) {
+const AnimatedCounter = ({ endValue, duration = 2000 }) => {
+  const [count, setCount] = React.useState(0);
+
+  React.useEffect(() => {
+    let startTimestamp;
+    const startValue = 0;
+
+    const step = (timestamp) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = timestamp - startTimestamp;
+
+      if (progress < duration) {
+        const nextCount = Math.min(
+          startValue + (endValue - startValue) * (progress / duration),
+          endValue
+        );
+        setCount(Math.floor(nextCount));
+        requestAnimationFrame(step);
+      } else {
+        setCount(endValue);
+      }
+    };
+
+    requestAnimationFrame(step);
+  }, [endValue, duration]);
+
+  return count;
+};
+
+export default function ViewTotal({ icon, label, value, currency }) {
   return (
-    <div className="lg:w-1/4 md:w-[42%] max-md:w-[40%] max-sm:w-[39.5%] flex flex-col justify-center items-center py-3 px-4 gap-y-2 border-transparent rounded-lg shadow-shadow1 mx-4 bg-[#F8F9FB]">
+    <div className="lg:w-1/4 md:w-1/2 max-md:w-1/2 max-sm:w-full flex flex-col justify-center items-center py-3 px-4 gap-y-2 border-transparent rounded-lg shadow-lg mx-4 bg-[#F8F9FB]">
       <div className="w-full flex flex-col">
         <span className="w-10 h-10">
           <img src={icon} alt="menu-icon" />
         </span>
       </div>
-
-      <small className="w-full text-[#64748B]">{label}</small>
-
-      <h1 className="w-full text-[#1E293B] text-xl font-bold">
+      <small className="w-full text-gray-500">{label}</small>
+      <h1 className="w-full text-gray-800 text-xl font-bold">
         {currency && "$"}
-        {value}
+        <AnimatedCounter endValue={value} />
       </h1>
     </div>
   );
 }
 
-View_total.propTypes = {
-  icon: propTypes.string.isRequired,
-  label: propTypes.string.isRequired,
-  value: propTypes.number.isRequired,
-  currency: propTypes.bool,
+ViewTotal.propTypes = {
+  icon: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  value: PropTypes.number.isRequired,
+  currency: PropTypes.bool,
 };

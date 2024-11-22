@@ -4,11 +4,13 @@ import bag_icon from "../../assets/Bag.svg";
 import chart_icon from "../../assets/Chart.svg";
 import user_icon from "../../assets/3-User.svg";
 import document_icon from "../../assets/Document.svg";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import SubscriptionProgress from "../reusables/progress_circle";
 import propTypes from "prop-types";
 
 export default function Sidebar({ isMobile, onNavItemClick }) {
+  const navigate = useLocation();
+
   return (
     <nav
       className={`
@@ -45,29 +47,35 @@ export default function Sidebar({ isMobile, onNavItemClick }) {
 
         <div className="w-full flex flex-col justify-center gap-y-8 text-[#8F95B2] font-bold my-8 mb-48 flex-grow">
           {[
-            { icon: icon1, text: "Dashboard", link: "#" },
+            { icon: icon1, text: "Dashboard", link: "/" },
             { icon: bag_icon, text: "Orders", link: "#" },
             { icon: chart_icon, text: "Analytics", link: "#" },
             { icon: user_icon, text: "Customer", link: "#" },
             { icon: document_icon, text: "Menu", link: "#" },
-          ].map((item, index) => (
-            <div
-              key={index}
-              className="w-full flex gap-x-2 px-4 py-2 hover:bg-[#6C5DD3] rounded-md"
-              onClick={onNavItemClick}
-            >
-              <span className="w-6 h-6">
-                <img
-                  src={item.icon}
-                  alt={item.text}
-                  className="w-full h-full"
-                />
-              </span>
-              <Link to={item.link} className="">
-                {item.text}
-              </Link>
-            </div>
-          ))}
+          ].map((item, index) => {
+            const isActive = navigate.pathname === item.link;
+
+            return (
+              <div
+                key={index}
+                className={`w-full flex gap-x-2 px-4 py-2 hover:bg-[#6C5DD3] rounded-md ${
+                  isActive ? "bg-[#6C5DD3] text-[#FFFFFF]" : ""
+                }`}
+                onClick={onNavItemClick}
+              >
+                <span className="w-6 h-6">
+                  <img
+                    src={item.icon}
+                    alt={item.text}
+                    className="w-full h-full"
+                  />
+                </span>
+                <Link to={item.link} className="">
+                  {item.text}
+                </Link>
+              </div>
+            );
+          })}
         </div>
 
         <div className="w-full flex flex-col bg-[#F8F9FB] rounded-md gap-y-6 py-6 px-4 relative mt-8 flex-shrink-0">
